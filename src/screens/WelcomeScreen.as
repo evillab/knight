@@ -2,7 +2,7 @@ package screens
 {
 	import com.demonsters.debugger.MonsterDebugger;
 	
-	import flash.utils.getTimer;
+	import events.NavigationEvent;
 	
 	import resources.Assets;
 	
@@ -11,7 +11,6 @@ package screens
 	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
-	import starling.events.EnterFrameEvent;
 	import starling.events.Event;
 
 	public class WelcomeScreen extends Sprite
@@ -124,8 +123,11 @@ package screens
 		
 		private function onMainMenuClicked(event:Event):void
 		{
-			//if((event.target as Button) == playBtn)
-				//this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN ,{id : "play"} , true));
+			if((event.target as Button) == playBtn)
+			{
+				this.removeEventListener(starling.events.Event.ENTER_FRAME, onEnterFrame);
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN ,{id : "play"} , true));
+			}
 		}
 		
 		public function disposeTemporarily():void
