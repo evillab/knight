@@ -2,8 +2,7 @@ package
 {
 	import events.NavigationEvent;
 	
-	import screens.InGame;
-	import screens.Welcome;
+	import screens.InGameScreen;
 	import screens.WelcomeScreen;
 	
 	import starling.display.Sprite;
@@ -12,7 +11,8 @@ package
 	public class Game extends Sprite
 	{
 		private var screenWelcome:WelcomeScreen;
-		//private var screenInGame : InGame;
+		private var screenInGame : InGameScreen;
+		
 		private var _debugMode:Boolean = false;
 		
 		public function Game()
@@ -23,17 +23,17 @@ package
 		
 		private function onAddedToStage():void
 		{
-			//this.addEventListener(NavigationEvent.CHANGE_SCREEN , onScreenChanged);
+			this.addEventListener(NavigationEvent.CHANGE_SCREEN , onScreenChanged);
 		
-			//screenInGame = new InGame(_debugMode);
-			//screenInGame.disposeTemporarily();
-			//this.addChild(screenInGame);
+			screenInGame = new InGameScreen();
+			screenInGame.disposeTemporarily();
+			this.addChild(screenInGame);
 		
 			screenWelcome = new WelcomeScreen();
 			this.addChild(screenWelcome);
 		}
 	
-		/*private function onScreenChanged(event:NavigationEvent):void
+		private function onScreenChanged(event:NavigationEvent):void
 		{
 			switch(event.params.id)
 			{
@@ -42,6 +42,6 @@ package
 					screenInGame.initialize();
 					break;
 			}
-		}*/
+		}
 	}
 }

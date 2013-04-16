@@ -2,7 +2,7 @@ package screens
 {
 	import com.demonsters.debugger.MonsterDebugger;
 	
-	//import events.NavigationEvent;
+	import events.NavigationEvent;
 	import resources.Assets;
 	import starling.core.Starling;
 	import starling.display.Button;
@@ -92,8 +92,8 @@ package screens
 		
 		private function onMainMenuClicked(event:Event):void
 		{
-			//if((event.target as Button) == playBtn)
-				//this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN ,{id : "play"} , true));
+			if((event.target as Button) == playBtn)
+				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN ,{id : "play"} , true));
 		}
 		
 		public function disposeTemporarily():void
