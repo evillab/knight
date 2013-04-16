@@ -2,13 +2,16 @@ package screens
 {
 	import com.demonsters.debugger.MonsterDebugger;
 	
-	//import events.NavigationEvent;
+	import flash.utils.getTimer;
+	
 	import resources.Assets;
+	
 	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
+	import starling.events.EnterFrameEvent;
 	import starling.events.Event;
 
 	public class WelcomeScreen extends Sprite
@@ -21,6 +24,7 @@ package screens
 		
 		private var knightShadowImg:Image;
 		private var knightImg:Image;
+		private var frame:uint=0;
 		
 		private var fireAnimation:MovieClip;
 		
@@ -36,7 +40,35 @@ package screens
 			
 			drawScreen();
 			createTorchAnimation();
+			createShadowAnimation();
 		}
+		
+		private function createShadowAnimation():void
+		{
+			// TODO Auto Generated method stub
+			this.addEventListener(starling.events.Event.ENTER_FRAME, onEnterFrame);
+			
+		}
+		
+		private function onEnterFrame():void
+		{
+			if(frame>=Math.ceil(Math.random()*10) + 5){	
+				if (knightShadowImg.y > leftBg.y)
+				{
+					knightShadowImg.y = leftBg.y;
+					knightShadowImg.x = leftBg.x;
+					knightShadowImg.alpha=1;
+				}
+				else{
+					knightShadowImg.y = leftBg.y+Math.random()*1.5;
+					knightShadowImg.x = leftBg.x+Math.random()*1.9;
+					knightShadowImg.alpha = Math.random() * .15 + .85;
+				}
+				frame=0;
+			}
+			frame++;
+		}		
+
 		
 		private function drawScreen():void
 		{
