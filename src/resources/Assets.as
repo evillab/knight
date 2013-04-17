@@ -8,7 +8,6 @@ package resources
 
 	public class Assets
 	{
-		
 		//menu
 		[Embed(source="../../assets/graphics/book/left_side_menu.png")]
 		public static const LeftSideMenu:Class;
