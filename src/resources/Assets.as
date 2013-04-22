@@ -29,6 +29,13 @@ package resources
 		
 		[Embed(source="../../assets/graphics/spriteSheets/xml/animationsSpriteSheet.xml" , mimeType="application/octet-stream")]
 		public static const AtlasXML: Class;
+		
+		// joystick
+		[Embed( source="../../assets/graphics/joystick/default_stick.png" )] 
+		private static const Joystick_ds:Class;
+		
+		[Embed( source="../../assets/graphics/joystick/default_holder.png" )] 
+		private static const Joystick_dh:Class;
 
 		private static var gameTexture:Dictionary = new Dictionary();
 		private static var gameTextureAtlas : TextureAtlas;

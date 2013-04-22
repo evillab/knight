@@ -74,7 +74,7 @@ package screens
 			// lewa strona menu
 			leftBg = new Image(Assets.getTexture("LeftSideMenu"));
 			leftBg.x =50;
-			leftBg.y = 50;
+			leftBg.scaleY = .9;
 			this.addChild(leftBg);
 			
 			knightShadowImg = new Image(Assets.getTexture("KnightShadow"));
@@ -91,19 +91,19 @@ package screens
 			//prawa strona menu
 			rightBg = new Image(Assets.getTexture("RightSideMenu"));
 			rightBg.x = 400;
-			rightBg.y = 50;
+			rightBg.scaleY = .9;
 			this.addChild(rightBg);
 			
 			playBtn = new Button(Assets.getTexture("MenuButton") , "PLAY");
 			playBtn.fontSize = 20;
 			playBtn.x = 450;
-			playBtn.y = 250;
+			playBtn.y = 150;
 			this.addChild(playBtn);
 			
 			settingsBtn = new Button(Assets.getTexture("MenuButton") , "OPTIONS");
 			settingsBtn.fontSize = 20;
 			settingsBtn.x = 450;
-			settingsBtn.y = 350;
+			settingsBtn.y = 250;
 			this.addChild(settingsBtn);
 			
 			// listener na klikniecie przycisku
