@@ -1,6 +1,7 @@
 package world.objects
 {
 	import Box2D.Collision.Shapes.b2PolygonShape;
+	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
@@ -57,6 +58,13 @@ package world.objects
 		{
 			body = World.b2dWorld.CreateBody(bodyDef);
 			body.CreateFixture(fixtureDef);
+		}
+		
+		public function update(velX:Number):void
+		{
+			var _velocityX:Number  = velX*0.01;
+			var linearVel:b2Vec2 = new b2Vec2(velX *Box2Properties.WORLD_SCALE,0);
+			body.SetLinearVelocity(linearVel);
 		}
 	}
 }

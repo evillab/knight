@@ -24,6 +24,8 @@ package world
 		private var canDebugDraw:Boolean = true;
 
 		private var joystick:JoyStick;
+
+		private var hero:Hero;
 		
 		public function World()
 		{
@@ -63,7 +65,7 @@ package world
 		
 		private function addHero():void
 		{
-			var hero:Hero = new Hero(10, 250 ,50 , 80)
+			hero = new Hero(10, 250 ,50 , 80)
 		}
 		
 		private function addJoystick():void
@@ -88,16 +90,18 @@ package world
 		private function updateWorld(e:Event):void
 		{
 			b2dWorld.Step(Box2Properties.TIME_STAMP, Box2Properties.VELOCITY_ITERATIONS ,Box2Properties.POSITION_ITERATIONS);
+			checkJoystickTouches();
+			hero.update(joystick.velocityX);
+			
 			b2dWorld.ClearForces();
 			b2dWorld.DrawDebugData();
-			checkJoystickTouches();
 		}
 		
 		private function checkJoystickTouches():void
 		{
 			if(joystick.touched)
 			{
-				trace(true);
+				//hero.update(joystick.velocityX);
 			}
 		}
 	}
