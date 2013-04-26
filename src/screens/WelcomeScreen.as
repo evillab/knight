@@ -12,8 +12,12 @@ package screens
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	
+	import utils.EFObserver;
+	import utils.IObserver;
+	
 
-	public class WelcomeScreen extends Sprite
+	public class WelcomeScreen extends Sprite implements IObserver
 	{
 		private var leftBg:Image;
 		private var rightBg:Image;
@@ -24,6 +28,7 @@ package screens
 		private var knightShadowImg:Image;
 		private var knightImg:Image;
 		private var frame:uint=0;
+		private var efo:EFObserver = EFObserver.getInstance();
 		
 		private var fireAnimation:MovieClip;
 		
@@ -39,18 +44,12 @@ package screens
 			
 			drawScreen();
 			createTorchAnimation();
-			createShadowAnimation();
+			efo.subscribeObserver(this);
 		}
 		
-		private function createShadowAnimation():void
+		public function update():void
 		{
-			// TODO Auto Generated method stub
-			this.addEventListener(starling.events.Event.ENTER_FRAME, onEnterFrame);
 			
-		}
-		
-		private function onEnterFrame():void
-		{
 			if(frame>=Math.ceil(Math.random()*10) + 5){	
 				if (knightShadowImg.y > leftBg.y)
 				{
@@ -125,7 +124,6 @@ package screens
 		{
 			if((event.target as Button) == playBtn)
 			{
-				this.removeEventListener(starling.events.Event.ENTER_FRAME, onEnterFrame);
 				this.dispatchEvent(new NavigationEvent(NavigationEvent.CHANGE_SCREEN ,{id : "play"} , true));
 			}
 		}
@@ -133,6 +131,7 @@ package screens
 		public function disposeTemporarily():void
 		{
 			this.visible = false;
+			efo.unsubscribeObserver(this);
 		}
 		
 	}
