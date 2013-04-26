@@ -15,6 +15,7 @@ package world
 	
 	import world.Box2Properties;
 	import world.objects.Box;
+	import world.objects.GameBackground;
 	import world.objects.Hero;
 	import world.objects.Platform;
 	
@@ -22,10 +23,9 @@ package world
 	{
 		public static var b2dWorld:b2World;
 		private var canDebugDraw:Boolean = true;
-
 		private var joystick:JoyStick;
-
 		private var hero:Hero;
+		private var bg:GameBackground;
 		
 		public function World()
 		{
@@ -41,6 +41,13 @@ package world
 			addBox();
 			addHero();
 			addJoystick();
+			addBackground();
+		}
+		
+		private function addBackground():void
+		{
+			bg = new GameBackground();
+			addChild(bg);
 		}
 		
 		private function initBox2dWorld():void
@@ -101,7 +108,7 @@ package world
 		{
 			if(joystick.touched)
 			{
-				//hero.update(joystick.velocityX);
+				hero.update(joystick.velocityX);
 			}
 		}
 	}

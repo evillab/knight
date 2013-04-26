@@ -9,6 +9,7 @@ package screens
 	{
 
 		private var _world:World;
+		
 		public function InGameScreen()
 		{
 			super();
